@@ -1,15 +1,15 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { Product } from "./products";
 
-interface CartItem {
+export type CartItem = {
   product: Product;
   quantity: number;
-}
+};
 
-interface CartContextType {
+type CartContextType = {
   cartItems: CartItem[];
   dispatch: React.Dispatch<CartAction>;
-}
+};
 
 const ADD_ITEM = "ADD_ITEM";
 const REMOVE_ITEM = "REMOVE_ITEM";

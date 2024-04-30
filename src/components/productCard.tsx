@@ -24,26 +24,24 @@ export default function ProductCard({ product }: Props) {
       <div className="p-4 h-full justify-evenly">
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
+            <span className="text-sm font-medium text-gray-500 ">
               {category}
             </span>
-            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-2 text-gray-500 ">
               <span className="text-sm font-medium">{rating.rate}</span>
               <span className="text-sm font-medium">({rating.count})</span>
             </div>
           </div>
           <h3 className="text-lg font-semibold mb-2">
-            <Link className="hover:text-primary transition-colors" href="#">
-              {title}
-            </Link>
+            <Link href="#">{title}</Link>
           </h3>
           <p className="text-gray-500 mb-4 line-clamp-4">{description}</p>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-primary font-semibold">{`${price} chf`}</span>
+          <span className="font-semibold">{`${price} .-`}</span>
           <button
             onClick={() => addItem(product)}
-            className="bg-black text-white px-3 py-2"
+            className="bg-black text-white px-3 py-2 rounded-md"
           >
             Add to Cart
           </button>
