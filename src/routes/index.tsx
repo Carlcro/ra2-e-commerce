@@ -3,6 +3,7 @@ import { productsQueryOptions } from "../products";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import ProductCard from "../components/productCard";
 import { useState } from "react";
+import { Filters } from "../components/filters";
 
 export const Route = createFileRoute("/")({
   loader: ({ context: { queryClient } }) =>
@@ -44,38 +45,14 @@ function HomePage() {
 
   return (
     <div>
-      <div>
-        Filter
-        <input
-          type="text"
-          value={titleFilter}
-          onChange={(e) => setTitleFilter(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="categoryFilter">Category</label>
-        <select
-          name="categoryFilter"
-          id="categoryFilter"
-          onChange={(e) => setCategoryFilter(e.target.value)}
-        >
-          <option value=""></option>
-
-          {availableCategories.map((c) => (
-            <option value={c}>{c}</option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        Price filter
-        <input
-          type="number"
-          value={priceFilter}
-          onChange={(e) => setPriceFilter(e.target.value)}
-        />
-      </div>
-
+      <Filters
+        availableCategories={availableCategories}
+        priceFilter={priceFilter}
+        setCategoryFilter={setCategoryFilter}
+        setPriceFilter={setPriceFilter}
+        setTitleFilter={setTitleFilter}
+        titleFilter={titleFilter}
+      />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 md:px-6 py-12">
         {filteredProducts?.map((product) => {
           return <ProductCard key={product.id} product={product}></ProductCard>;
