@@ -87,6 +87,11 @@ export function useCart() {
     0
   );
 
+  const totalCost = cartItems.reduce(
+    (prev, curr) => prev + curr.product.price * curr.quantity,
+    0
+  );
+
   const addItem = (product: Product) =>
     dispatch({ type: ADD_ITEM, payload: product });
   const removeItem = (id: number) =>
@@ -94,5 +99,12 @@ export function useCart() {
   const updateQuantity = (id: number, quantity: number) =>
     dispatch({ type: UPDATE_QUANTITY, payload: { id, quantity } });
 
-  return { cartItems, addItem, removeItem, updateQuantity, numberOfItems };
+  return {
+    cartItems,
+    addItem,
+    removeItem,
+    updateQuantity,
+    numberOfItems,
+    totalCost,
+  };
 }

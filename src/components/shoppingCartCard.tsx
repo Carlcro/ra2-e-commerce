@@ -21,8 +21,8 @@ export const ShoppingCartCard = ({ item }: Props) => {
         </div>
         <div className="flex flex-col justify-between py-1">
           <div className="flex flex-col">
-            <span className="text-2xl">{product.title}</span>
-            <span className="text-xl">{`${product.price} .-`}</span>
+            <span className="text-xl">{product.title}</span>
+            <span className="text-lg">{`${product.price} .-`}</span>
           </div>
           <input
             className="border-2 border-black w-12 flex text-center"

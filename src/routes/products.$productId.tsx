@@ -16,7 +16,7 @@ function Product() {
 
   return (
     <div className="w-[500px] mx-auto mt-12">
-      <ProductCard product={product} />
+      <ProductCard showFullDescription product={product} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useCart } from "../CartContext";
 import { ShoppingCartCard } from "../components/shoppingCartCard";
 
@@ -10,13 +10,19 @@ function ShoppingCart() {
   const { cartItems } = useCart();
 
   return (
-    <div className="flex flex-col  items-center">
+    <div className="flex flex-col items-center  max-w-[800px] mx-auto">
       <h2 className="text-2xl">Shopping Cart</h2>
-      <div className="flex flex-col gap-4 mt-5  max-w-[800px]">
+      <div className="flex flex-col gap-4 mt-5 w-full">
         {cartItems.map((item) => (
           <ShoppingCartCard item={item} />
         ))}
       </div>
+      <Link
+        className="w-full bg-black text-white py-2 flex items-center justify-center mt-5"
+        to="/checkout"
+      >
+        Go to Checkout
+      </Link>
     </div>
   );
 }

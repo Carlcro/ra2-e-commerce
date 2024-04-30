@@ -4,9 +4,13 @@ import { useCart } from "../CartContext";
 
 type Props = {
   product: Product;
+  showFullDescription?: boolean;
 };
 
-export default function ProductCard({ product }: Props) {
+export default function ProductCard({
+  product,
+  showFullDescription = false,
+}: Props) {
   const { image, category, description, rating, title, price, id } = product;
   const { addItem } = useCart();
 
@@ -35,7 +39,11 @@ export default function ProductCard({ product }: Props) {
           <h3 className="text-lg font-semibold mb-2">
             <Link to={`/products/${id}`}>{title}</Link>
           </h3>
-          <p className="text-gray-500 mb-4 line-clamp-4">{description}</p>
+          <p
+            className={`text-gray-500 mb-4 ${showFullDescription ? "" : "line-clamp-4"}`}
+          >
+            {description}
+          </p>
         </div>
         <div className="flex items-center justify-between">
           <span className="font-semibold">{`${price} .-`}</span>
