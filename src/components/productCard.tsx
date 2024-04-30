@@ -7,12 +7,12 @@ type Props = {
 };
 
 export default function ProductCard({ product }: Props) {
-  const { image, category, description, rating, title, price } = product;
+  const { image, category, description, rating, title, price, id } = product;
   const { addItem } = useCart();
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden group">
-      <Link className="block relative" href="#">
+      <Link className="block relative" to={`/products/${id}`}>
         <img
           alt="Product Image"
           className="w-full h-64 object-scale-down group-hover:opacity-80 transition-opacity"
@@ -33,7 +33,7 @@ export default function ProductCard({ product }: Props) {
             </div>
           </div>
           <h3 className="text-lg font-semibold mb-2">
-            <Link href="#">{title}</Link>
+            <Link to={`/products/${id}`}>{title}</Link>
           </h3>
           <p className="text-gray-500 mb-4 line-clamp-4">{description}</p>
         </div>

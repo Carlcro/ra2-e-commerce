@@ -14,18 +14,17 @@ export type Product = {
   };
 };
 
-export class PostNotFoundError extends Error {}
+export class ProductNotFoundError extends Error {}
 
 const PRODUCTS_BASEURL = "https://fakestoreapi.com/products";
 
 export const fetchProduct = async (postId: string) => {
-  await new Promise((r) => setTimeout(r, 500));
   const post = await axios
     .get<Product>(`${PRODUCTS_BASEURL}/${postId}`)
     .then((r) => r.data)
     .catch((err) => {
       if (err.response.status === 404) {
-        throw new PostNotFoundError(`Post with id "${postId}" not found!`);
+        throw new ProductNotFoundError(`Post with id "${postId}" not found!`);
       }
       throw err;
     });
@@ -34,18 +33,16 @@ export const fetchProduct = async (postId: string) => {
 };
 
 export const fetchProducts = async () => {
-  return axios
-    .get<Product[]>(`${PRODUCTS_BASEURL}`)
-    .then((r) => r.data.slice(0, 10));
+  return axios.get<Product[]>(`${PRODUCTS_BASEURL}`).then((r) => r.data);
 };
 
-export const postsQueryOptions = queryOptions({
-  queryKey: ["posts"],
+export const productsQueryOptions = queryOptions({
+  queryKey: ["products"],
   queryFn: () => fetchProducts(),
 });
 
-export const postQueryOptions = (postId: string) =>
+export const productQueryOptions = (postId: string) =>
   queryOptions({
-    queryKey: ["posts", { postId }],
+    queryKey: ["product", { postId }],
     queryFn: () => fetchProduct(postId),
   });

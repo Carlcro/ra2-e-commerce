@@ -1,19 +1,18 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
-import { postsQueryOptions } from "../products";
+import { createFileRoute } from "@tanstack/react-router";
+import { productsQueryOptions } from "../products";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import ProductCard from "../components/productCard";
 
 export const Route = createFileRoute("/")({
   loader: ({ context: { queryClient } }) =>
-    queryClient.ensureQueryData(postsQueryOptions),
+    queryClient.ensureQueryData(productsQueryOptions),
   component: HomePage,
 });
 
 function HomePage() {
-  const postsQuery = useSuspenseQuery(postsQueryOptions);
+  const postsQuery = useSuspenseQuery(productsQueryOptions);
   const posts = postsQuery.data;
 
-  console.log(posts);
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 md:px-6 py-12">
       {posts?.map((product) => {
