@@ -118,10 +118,10 @@ export const CheckoutForm: React.FC = () => {
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div className="flex flex-col">
-            <label htmlFor="card-number">Card Number</label>
+            <label htmlFor="cardNumber">Card Number</label>
             <input
               className="border-2 border-grey p-3"
-              id="hej"
+              id="cardNumber"
               placeholder="4111 1111 1111 1111"
               type="text"
               value={formData.cardNumber}
