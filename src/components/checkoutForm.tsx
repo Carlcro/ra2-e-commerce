@@ -53,10 +53,10 @@ export const CheckoutForm: React.FC = () => {
       formIsValid = false;
     }
 
-    /*     if (!formData.cardNumber) {
+    if (!formData.cardNumber) {
       errors.cardNumber = "Card number is required";
       formIsValid = false;
-    } */
+    }
 
     if (!formData.expiry) {
       errors.expiry = "Expiry date is required";
@@ -76,8 +76,6 @@ export const CheckoutForm: React.FC = () => {
     e.preventDefault();
     if (validateForm()) {
       alert("Order submitted!");
-    } else {
-      console.log("Form has errors:", errors);
     }
   };
 
@@ -119,7 +117,7 @@ export const CheckoutForm: React.FC = () => {
           {errors.address && <p className="text-red-500">{errors.address}</p>}
         </div>
         <div className="grid grid-cols-2 gap-4">
-          {/*    <div className="flex flex-col">
+          <div className="flex flex-col">
             <label htmlFor="card-number">Card Number</label>
             <input
               className="border-2 border-grey p-3"
@@ -132,7 +130,7 @@ export const CheckoutForm: React.FC = () => {
             {errors.cardNumber && (
               <p className="text-red-500">{errors.cardNumber}</p>
             )}
-          </div> */}
+          </div>
           <div className="flex flex-col">
             <label htmlFor="expiry">Expiry</label>
             <input
