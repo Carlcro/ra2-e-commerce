@@ -35,8 +35,6 @@ export const fetchProduct = async (postId: string) => {
 };
 
 export const fetchProducts = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
   return axios.get<Product[]>(`${PRODUCTS_BASEURL}`).then((r) => r.data);
 };
 
