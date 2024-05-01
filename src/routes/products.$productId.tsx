@@ -24,7 +24,7 @@ function Product() {
   const { data: product } = useSuspenseQuery(productQueryOptions(productId));
 
   return (
-    <div className="w-[500px] mx-auto mt-12">
+    <div className="max-w-[500px] mx-auto mt-12">
       <ProductCard showFullDescription product={product} />
     </div>
   );
