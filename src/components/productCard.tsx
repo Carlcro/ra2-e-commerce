@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Product } from "../products";
+import { Product } from "../services/products";
 import { useCart } from "../CartContext";
+import { useEffect, useState } from "react";
 
 type Props = {
   product: Product;
@@ -11,15 +12,31 @@ export default function ProductCard({
   product,
   showFullDescription = false,
 }: Props) {
+  const [itemAdded, setItemAdded] = useState(false);
   const { image, category, description, rating, title, price, id } = product;
   const { addItem } = useCart();
+
+  const handleAddItem = (product: Product) => {
+    addItem(product);
+    setItemAdded(true);
+  };
+
+  useEffect(() => {
+    if (itemAdded) {
+      const timer = setTimeout(() => {
+        setItemAdded(false);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [itemAdded]);
 
   return (
     <div className="flex flex-col justify-between bg-white rounded-lg shadow-md group p-4">
       <div>
         <Link className="block relative" to={`/products/${id}`}>
           <img
-            alt="Product Image"
+            alt={`${title}`}
             className="w-full h-64 object-scale-down group-hover:opacity-80 transition-opacity"
             height={400}
             src={`${image}`}
@@ -51,10 +68,10 @@ export default function ProductCard({
       <div className="flex items-center justify-between">
         <span className="font-semibold">{`${price} .-`}</span>
         <button
-          onClick={() => addItem(product)}
-          className="bg-black text-white px-3 py-2 rounded-md"
+          onClick={() => handleAddItem(product)}
+          className="bg-black text-white px-3 py-2 rounded-md hover:bg-gray-700 active:bg-black w-28"
         >
-          Add to Cart
+          {itemAdded ? "Added" : "Add to Cart"}
         </button>
       </div>
     </div>
