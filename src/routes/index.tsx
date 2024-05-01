@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { productsQueryOptions } from "../products";
+import { productsQueryOptions } from "../services/products";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import ProductCard from "../components/productCard";
 import { useState } from "react";
@@ -9,7 +9,25 @@ export const Route = createFileRoute("/")({
   loader: ({ context: { queryClient } }) =>
     queryClient.ensureQueryData(productsQueryOptions),
   component: HomePage,
+  errorComponent: ErrorComponent,
+  pendingComponent: LoadingComponent,
 });
+
+function LoadingComponent() {
+  return (
+    <div className="grid place-content-center h-64">
+      <p>Loading..</p>
+    </div>
+  );
+}
+
+function ErrorComponent() {
+  return (
+    <div className="grid place-content-center">
+      <p>Could not load products. Please try again later.</p>
+    </div>
+  );
+}
 
 function HomePage() {
   const productsQuery = useSuspenseQuery(productsQueryOptions);
