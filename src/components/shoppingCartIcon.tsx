@@ -5,7 +5,7 @@ export const ShoppingCartIcon = () => {
   const { numberOfItems } = useCart();
 
   return (
-    <div className="relative mr-28 w-10 h-10">
+    <div className="relative md:mr-28 w-10 h-10">
       <Link to="/shoppingCart">
         <svg
           xmlns="http://www.w3.org/2000/svg"

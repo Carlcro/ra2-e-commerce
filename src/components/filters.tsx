@@ -16,7 +16,7 @@ export const Filters = ({
   availableCategories,
 }: Props) => {
   return (
-    <div className="flex  ml-14 gap-5">
+    <div className="flex flex-col md:flex-row px-3 md:ml-14 gap-5">
       <div className="flex flex-col">
         <span>Search</span>
         <input
