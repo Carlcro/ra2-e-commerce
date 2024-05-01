@@ -15,7 +15,7 @@ export default function ProductCard({
   const { addItem } = useCart();
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden group">
+    <div className="bg-white rounded-lg shadow-md group">
       <Link className="block relative" to={`/products/${id}`}>
         <img
           alt="Product Image"
