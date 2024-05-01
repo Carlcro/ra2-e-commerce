@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useCart } from "../CartContext";
+import { useNavigate } from "@tanstack/react-router";
 
 type FormData = {
   name: string;
@@ -23,6 +25,8 @@ export const CheckoutForm: React.FC = () => {
     cvc: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
+  const { clearCart } = useCart();
+  const navigate = useNavigate({ from: "/checkout" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -75,7 +79,9 @@ export const CheckoutForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
+      clearCart();
       alert("Order submitted!");
+      navigate({ to: "/" });
     }
   };
 

@@ -101,6 +101,7 @@ export function useCart() {
     dispatch({ type: REMOVE_ITEM, payload: id });
   const updateQuantity = (id: number, quantity: number) =>
     dispatch({ type: UPDATE_QUANTITY, payload: { id, quantity } });
+  const clearCart = () => dispatch({ type: CLEAR_CART });
 
   return {
     cartItems,
@@ -109,5 +110,6 @@ export function useCart() {
     updateQuantity,
     numberOfItems,
     totalCost,
+    clearCart,
   };
 }
