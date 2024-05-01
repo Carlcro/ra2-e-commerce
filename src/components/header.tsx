@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingCartIcon } from "./components/shoppingCartIcon";
+import { ShoppingCartIcon } from "./shoppingCartIcon";
 
 export const Header = () => {
   return (
