@@ -8,7 +8,7 @@ export const OrderSummery = () => {
       <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
       <div className="space-y-4">
         {cartItems.map((item) => (
-          <div className="flex justify-between">
+          <div key={item.product.id} className="flex justify-between">
             <span>{`${item.product.title} x ${item.quantity}`}</span>
             <span>{`${item.product.price * item.quantity} .-`}</span>
           </div>

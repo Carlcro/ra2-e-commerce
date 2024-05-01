@@ -47,7 +47,9 @@ export const Filters = ({
           <option value=""></option>
 
           {availableCategories.map((c) => (
-            <option value={c}>{c}</option>
+            <option key={c} value={c}>
+              {c}
+            </option>
           ))}
         </select>
       </div>
