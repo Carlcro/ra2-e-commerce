@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// Define types for the form data and errors
 type FormData = {
   name: string;
   email: string;
@@ -54,10 +53,10 @@ export const CheckoutForm: React.FC = () => {
       formIsValid = false;
     }
 
-    if (!formData.cardNumber) {
+    /*     if (!formData.cardNumber) {
       errors.cardNumber = "Card number is required";
       formIsValid = false;
-    }
+    } */
 
     if (!formData.expiry) {
       errors.expiry = "Expiry date is required";
@@ -120,7 +119,7 @@ export const CheckoutForm: React.FC = () => {
           {errors.address && <p className="text-red-500">{errors.address}</p>}
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <div className="flex flex-col">
+          {/*    <div className="flex flex-col">
             <label htmlFor="card-number">Card Number</label>
             <input
               className="border-2 border-grey p-3"
@@ -133,7 +132,7 @@ export const CheckoutForm: React.FC = () => {
             {errors.cardNumber && (
               <p className="text-red-500">{errors.cardNumber}</p>
             )}
-          </div>
+          </div> */}
           <div className="flex flex-col">
             <label htmlFor="expiry">Expiry</label>
             <input
@@ -160,7 +159,7 @@ export const CheckoutForm: React.FC = () => {
           </div>
         </div>
         <button
-          className="w-full bg-black text-white py-2 flex items-center justify-center"
+          className="w-full bg-black text-white py-2 flex items-center justify-center hover:bg-gray-700 active:bg-black"
           type="submit"
         >
           Place Order

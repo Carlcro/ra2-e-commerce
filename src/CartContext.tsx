@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { Product } from "./products";
+import { Product } from "./services/products";
 
 export type CartItem = {
   product: Product;
@@ -14,13 +14,15 @@ type CartContextType = {
 const ADD_ITEM = "ADD_ITEM";
 const REMOVE_ITEM = "REMOVE_ITEM";
 const UPDATE_QUANTITY = "UPDATE_QUANTITY";
+const CLEAR_CART = "CLEAR_CART";
 
 const CartContext = createContext<CartContextType | null>(null);
 
 type CartAction =
   | { type: typeof ADD_ITEM; payload: Product }
   | { type: typeof REMOVE_ITEM; payload: number }
-  | { type: typeof UPDATE_QUANTITY; payload: { id: number; quantity: number } };
+  | { type: typeof UPDATE_QUANTITY; payload: { id: number; quantity: number } }
+  | { type: typeof CLEAR_CART };
 
 function addOrUpdateCartItem(
   cartItems: CartItem[],
@@ -54,6 +56,8 @@ function cartReducer(state: CartItem[], action: CartAction): CartItem[] {
           ? { ...item, quantity: action.payload.quantity }
           : item
       );
+    case CLEAR_CART:
+      return [];
 
     default:
       return state;
@@ -64,7 +68,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-// Provider Component
 export const CartProvider: React.FC<Props> = ({ children }) => {
   const [cartItems, dispatch] = useReducer(cartReducer, []);
 

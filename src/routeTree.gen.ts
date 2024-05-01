@@ -13,7 +13,6 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as ShoppingCartImport } from './routes/shoppingCart'
 import { Route as CheckoutImport } from './routes/checkout'
-import { Route as LayoutImport } from './routes/_layout'
 import { Route as IndexImport } from './routes/index'
 import { Route as ProductsProductIdImport } from './routes/products.$productId'
 
@@ -26,11 +25,6 @@ const ShoppingCartRoute = ShoppingCartImport.update({
 
 const CheckoutRoute = CheckoutImport.update({
   path: '/checkout',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const LayoutRoute = LayoutImport.update({
-  id: '/_layout',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -50,10 +44,6 @@ declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
       preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/_layout': {
-      preLoaderRoute: typeof LayoutImport
       parentRoute: typeof rootRoute
     }
     '/checkout': {
