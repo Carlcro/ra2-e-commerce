@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { productQueryOptions } from "../products";
+import { productQueryOptions } from "../services/products";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import ProductCard from "../components/productCard";
 
@@ -8,7 +8,16 @@ export const Route = createFileRoute("/products/$productId")({
   loader: ({ context: { queryClient }, params: { productId } }) => {
     return queryClient.ensureQueryData(productQueryOptions(productId));
   },
+  errorComponent: ({ error }) => <ErrorComponent error={error as Error} />,
 });
+
+function ErrorComponent({ error }: { error: Error }) {
+  return (
+    <div className="grid place-content-center">
+      <p>{error.message}</p>
+    </div>
+  );
+}
 
 function Product() {
   const productId = Route.useParams().productId;
