@@ -1,30 +1,41 @@
-# React + TypeScript + Vite
+# E-commerce site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project is a React-based web application using Vite for efficient bundling, TanStack Router for navigation, and TanStack Query for server-state management. The app allows users to browse products, add items to their cart, and complete purchases with a credit card.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Product List**: Browse a list of products, each displayed with its price and rating.
+- **Detailed Product Page**: View detailed information about each product by navigating to its dedicated page.
+- **Shopping Cart**: Review all items added to the cart before proceeding to checkout.
+- **Checkout Page**: Complete your purchase by entering credit card details.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Running the Application Locally
 
-- Configure the top-level `parserOptions` property like this:
+1. **Clone the Repository**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+   Begin by cloning the repository to your local machine using Git:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+   ```bash
+   git clone https://github.com/your-repository/react-shopping-cart.git
+   cd react-shopping-cart
+   ```
+
+2. **Install Dependencies**
+
+   Install all the required dependencies using Yarn:
+
+   ```bash
+   yarn install
+   ```
+
+3. **Start the Development Server**
+
+   Launch the development server with hot reloading by running:
+
+   ```bash
+   yarn dev
+   ```
+
+   This will start the application on `http://localhost:5174`
