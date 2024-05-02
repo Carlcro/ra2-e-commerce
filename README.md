@@ -2,13 +2,13 @@
 
 ## Overview
 
-This project is a React-based web application using Vite for efficient bundling, TanStack Router for navigation, and TanStack Query for server-state management. The app allows users to browse products, add items to their cart, and complete purchases with a credit card.
+This project is a React-based web application using Vite for bundling, Tailwind for styling, TanStack Router for navigation, and TanStack Query for server-state management. The app allows users to browse products, add items to their cart, and complete purchases with a credit card.
 
 ## Features
 
-- **Product List**: Browse a list of products, each displayed with its price and rating.
+- **Product List**: Browse a list of products, each displayed with its price and rating. Filter on title, price and category. Filter state is in the URL so that it can be bookmarked or shared.
 - **Detailed Product Page**: View detailed information about each product by navigating to its dedicated page.
-- **Shopping Cart**: Review all items added to the cart before proceeding to checkout.
+- **Shopping Cart**: Review all items added to the cart before proceeding to checkout. Items added to shopping cart will be saved in local storage so that it persists between browser sessions.
 - **Checkout Page**: Complete your purchase by entering credit card details.
 
 ## Running the Application Locally
