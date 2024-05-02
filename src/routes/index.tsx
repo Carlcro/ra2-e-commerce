@@ -76,6 +76,7 @@ function HomePage() {
     <div>
       <Filters availableCategories={availableCategories} />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 md:px-16 py-12">
+        {filteredProducts.length === 0 && <span>No products found</span>}
         {filteredProducts?.map((product) => {
           return <ProductCard key={product.id} product={product}></ProductCard>;
         })}
