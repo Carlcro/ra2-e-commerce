@@ -2,8 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { productsQueryOptions } from "../services/products";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import ProductCard from "../components/productCard";
-import { useState } from "react";
 import { Filters } from "../components/filters";
+
+type ProductSearch = {
+  search: string;
+  price?: number | string;
+  category: string;
+};
 
 export const Route = createFileRoute("/")({
   loader: ({ context: { queryClient } }) =>
@@ -11,6 +16,13 @@ export const Route = createFileRoute("/")({
   component: HomePage,
   errorComponent: ErrorComponent,
   pendingComponent: LoadingComponent,
+  validateSearch: (search: Record<string, unknown>): ProductSearch => {
+    return {
+      search: search.search as string,
+      price: search.price as number,
+      category: search.category as string,
+    };
+  },
 });
 
 function LoadingComponent() {
@@ -31,9 +43,8 @@ function ErrorComponent() {
 
 function HomePage() {
   const productsQuery = useSuspenseQuery(productsQueryOptions);
-  const [titleFilter, setTitleFilter] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("");
-  const [priceFilter, setPriceFilter] = useState("");
+
+  const { search, price, category } = Route.useSearch();
 
   const products = productsQuery.data;
   const availableCategories = [
@@ -45,17 +56,17 @@ function HomePage() {
     let categoryMatch = true;
     let priceMatch = true;
 
-    if (titleFilter) {
+    if (search && typeof search === "string") {
       titleMatch = product.title
         .toLocaleLowerCase()
-        .includes(titleFilter.toLowerCase());
+        .includes(search.toLowerCase());
     }
-    if (categoryFilter) {
-      categoryMatch = product.category === categoryFilter;
+    if (category && typeof category === "string") {
+      categoryMatch = product.category === category;
     }
 
-    if (priceFilter) {
-      priceMatch = product.price <= parseFloat(priceFilter);
+    if (typeof price === "number") {
+      priceMatch = product.price <= price;
     }
 
     return titleMatch && categoryMatch && priceMatch;
@@ -63,14 +74,7 @@ function HomePage() {
 
   return (
     <div>
-      <Filters
-        availableCategories={availableCategories}
-        priceFilter={priceFilter}
-        setCategoryFilter={setCategoryFilter}
-        setPriceFilter={setPriceFilter}
-        setTitleFilter={setTitleFilter}
-        titleFilter={titleFilter}
-      />
+      <Filters availableCategories={availableCategories} />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 md:px-16 py-12">
         {filteredProducts?.map((product) => {
           return <ProductCard key={product.id} product={product}></ProductCard>;
