@@ -81,7 +81,14 @@ export const CheckoutForm: React.FC = () => {
     if (validateForm()) {
       clearCart();
       alert("Order submitted!");
-      navigate({ to: "/" });
+      navigate({
+        to: "/",
+        search: {
+          category: "",
+          search: "",
+          price: "",
+        },
+      });
     }
   };
 
