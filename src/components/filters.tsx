@@ -1,4 +1,4 @@
-import { useNavigate, useSearch } from "@tanstack/react-router";
+import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 
 type Props = {
   availableCategories: string[];
@@ -10,6 +10,8 @@ export const Filters = ({ availableCategories }: Props) => {
   const { search, price, category } = useSearch({
     from: "/",
   });
+
+  const activeFilter = search || price || category;
 
   return (
     <div className="flex flex-col md:flex-row px-3 md:ml-14 gap-5">
@@ -50,6 +52,7 @@ export const Filters = ({ availableCategories }: Props) => {
           className="b-grey border-2 p-2 rounded-md"
           name="categoryFilter"
           id="categoryFilter"
+          value={category}
           onChange={(e) =>
             navigate({
               search: () => ({
@@ -69,6 +72,20 @@ export const Filters = ({ availableCategories }: Props) => {
           ))}
         </select>
       </div>
+      {activeFilter && (
+        <div className="flex items-end justify-center ">
+          <Link
+            className="b-grey border-2 p-2 rounded-md"
+            search={{
+              category: "",
+              search: "",
+              price: "",
+            }}
+          >
+            X Clear filter
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
