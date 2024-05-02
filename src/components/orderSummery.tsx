@@ -4,7 +4,7 @@ export const OrderSummery = () => {
   const { totalCost, cartItems } = useCart();
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
+    <div className="bg-gray-100 rounded-lg p-6">
       <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
       <div className="space-y-4">
         {cartItems.map((item) => (
