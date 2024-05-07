@@ -27,6 +27,7 @@ export const ShoppingCartCard = ({ item }: Props) => {
           <input
             className="border-2 border-black w-12 flex text-center"
             type="number"
+            min={0}
             value={quantity === 0 ? "" : quantity}
             onChange={(e) => updateQuantity(product.id, Number(e.target.value))}
           />
